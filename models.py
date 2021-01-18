@@ -1,14 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 
+# Pre-Activation Resnet from Identity Mappings in Deep Residual Networks by Kaiming He
+# Code from https://github.com/kuangliu/pytorch-cifar
 class PreActBlock(nn.Module):
     '''Pre-activation version of the BasicBlock.'''
     expansion = 1
