@@ -19,4 +19,4 @@ Note: the weight file starts to save when knn accuracy surpasses save_acc
 
 #### References  
 * Pre-activation ResNet: [Identity Mappings in Deep Residual Networks](https://arxiv.org/abs/1603.05027) by Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
-* Pre-activation ResNet code: https://github.com/kuangliu/pytorch-cifar/blob/master/models/preact_resnet.py
+* Pre-activation ResNet code: [kuangliu pytorch-cifar](https://github.com/kuangliu/pytorch-cifar/blob/master/models/preact_resnet.py)
