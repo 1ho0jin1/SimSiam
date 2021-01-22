@@ -47,7 +47,7 @@ def preprocess(args):
     bankset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_test)
     queryset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
 
-    trainloader = DataLoader(trainset,batch_size=train_batch_size,shuffle=True)
+    trainloader = DataLoader(trainset,batch_size=train_batch_size,shuffle=True,num_workers=4,pin_memory=False)
     bankloader = DataLoader(bankset,batch_size=bank_batch_size,shuffle=False)
     queryloader = DataLoader(queryset,batch_size=query_batch_size,shuffle=False)
     classifier_trainloader = DataLoader(bankset,batch_size=bank_batch_size,shuffle=True)

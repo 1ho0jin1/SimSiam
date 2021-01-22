@@ -10,6 +10,7 @@ def _train_SimSiam(device,trainloader,bankloader,queryloader,
                    model,optimizer,scheduler,num_epochs,base_dir,
                   saved_epoch=0,loss_hist=[],knn_hist=[],best_acc=80):
     model.to(device)
+    scaler = torch.cuda.amp.GradScaler()
     start_time = time.time()
     for epoch in range(saved_epoch,num_epochs):
         model.train()
@@ -20,10 +21,12 @@ def _train_SimSiam(device,trainloader,bankloader,queryloader,
             x2 = x2.to(device)
 
             optimizer.zero_grad()
-            z1,z2,p1,p2 = model(x1,x2)
-            loss = D(p1,z2)/2 + D(p2,z1)/2
-            loss.backward()
-            optimizer.step()
+            with torch.cuda.amp.autocast():
+                z1,z2,p1,p2 = model(x1,x2)
+                loss = D(p1,z2)/2 + D(p2,z1)/2
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
 
             if b%40 == 0:
                 loss_hist.append(loss.item())

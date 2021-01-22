@@ -61,4 +61,4 @@ def train_classifier(weight_path, classifier_type='lin_small'):
 train_SimSiam()
 
 # classifier training
-train_classifier('./weights/SimSiam_8812.chkpt', classifier_type='lin_small')
+train_classifier('/home/yoon/0MSLAB/SimSiam_8812.chkpt', classifier_type='lin_small')
